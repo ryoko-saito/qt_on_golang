@@ -8,9 +8,9 @@ Go言語でQtを使ってみる。コードを読みながら試してみたQt�
 <br><br>
 **サンプルコードを試すためのコマンド**
 ```
-// QFormLayoutを試したい場合(ディレクトリ名がform)<br>
-cd サンプルコードのクローンを配置したいディレクトリ<br>
-git clone https://github.com/ryoko-saito/qt_on_golang.git<br>
-cd qt_on_golang<br>
+// QFormLayoutを試したい場合(ディレクトリ名がform)
+cd サンプルコードのクローンを配置したいディレクトリ
+git clone https://github.com/ryoko-saito/qt_on_golang.git
+cd qt_on_golang
 qtdeploy test desktop ./form
 ```
