@@ -1,5 +1,5 @@
 # Go言語でQtを使ってみる
-コードを読みながら試してみたQtの自作コード集<br>
+Go言語でQt(GUIツールキット)を扱えるパッケージのコードを読みながら試してみたQtの自作コードサンプル集<br>
 [https://github.com/therecipe/qt](https://github.com/therecipe/qt)を利用する。<br><br>
 
 ## サンプルコードの試し方<br>
