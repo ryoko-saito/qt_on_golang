@@ -1,7 +1,7 @@
 # Go言語でQtを使ってみる
 Go言語でQt(GUIツールキット)を扱えるパッケージのコードを読みながら試してみたQtの自作コードサンプル集<br>
-[https://github.com/therecipe/qt](https://github.com/therecipe/qt){:target="_blank"}を利用する。<br>
-Qtについて：[Qt | Cross-platform software development for embedded &amp; desktop](https://www.qt.io/){:target="_blank"}<br><br>
+<a href="https://github.com/therecipe/qt" target="_blank">https://github.com/therecipe/qt</a>を利用する。<br>
+Qtについて：<a href="https://www.qt.io/" target="_blank">Qt | Cross-platform software development for embedded &amp; desktop</a><br><br>
 
 ## サンプルコードの試し方<br>
 **Go言語でQtを試すための環境構築**<br>
