@@ -10,9 +10,9 @@ Qtについて：[Qt | Cross-platform software development for embedded &amp; de
 <br><br>
 **サンプルコードを試すためのコマンド**
 ```
-// QFormLayoutを試したい場合(ディレクトリ名がform)
+// QFormLayoutを試したい場合(ディレクトリ名がレイアウトディレクトリ内のform)
 cd サンプルコードのクローンを配置したいディレクトリ
 git clone https://github.com/ryoko-saito/qt_on_golang.git
-cd qt_on_golang
+cd qt_on_golang/layout
 qtdeploy test desktop ./form
 ```
