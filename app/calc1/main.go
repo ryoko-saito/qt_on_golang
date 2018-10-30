@@ -11,13 +11,17 @@ import (
 var jikyuuInput *widgets.QLineEdit
 var jikanInput *widgets.QLineEdit
 var goukeiInput *widgets.QLineEdit
+var dayInput *widgets.QLineEdit
+var trafficInput *widgets.QLineEdit
+var traffictotalInput *widgets.QLineEdit
+var paymenttotalInput *widgets.QLineEdit
 
 func main() {
 
 	app := widgets.NewQApplication(len(os.Args), os.Args)
 
 	window := widgets.NewQMainWindow(nil, 0)
-	window.SetMinimumSize2(400, 200)
+	window.SetMinimumSize2(400, 300)
 	window.SetWindowTitle("Salaly calculator")
 
 	gridLayout := widgets.NewQGridLayout2()
@@ -48,8 +52,43 @@ func main() {
 	jikyuuInput = widgets.NewQLineEdit(nil)
 	gridLayout.AddWidget(jikyuuInput, 1, 0, 0)
 
+	dayLabel := widgets.NewQLabel2("日数", nil, 0)
+	gridLayout.AddWidget(dayLabel, 2, 0, 0)
+
+	trafficfeeLabel := widgets.NewQLabel2("交通費", nil, 0)
+	gridLayout.AddWidget(trafficfeeLabel, 2, 2, 0)
+
+	traffictatleLabel := widgets.NewQLabel2("交通費合計", nil, 0)
+	gridLayout.AddWidget(traffictatleLabel, 2, 4, 0)
+
+	dayInput = widgets.NewQLineEdit(nil)
+	gridLayout.AddWidget(dayInput, 3, 0, 0)
+
+	kakeruLabel = widgets.NewQLabel2("×", nil, 0)
+	gridLayout.AddWidget(kakeruLabel, 3, 1, 0)
+
+	trafficInput = widgets.NewQLineEdit(nil)
+	gridLayout.AddWidget(trafficInput, 3, 2, 0)
+
+	ikoruLabel = widgets.NewQLabel2("=", nil, 0)
+	gridLayout.AddWidget(ikoruLabel, 3, 3, 0)
+
+	traffictotalInput := widgets.NewQLineEdit(nil)
+	gridLayout.AddWidget(traffictotalInput, 3, 4, 0)
+
+	paymenttotalLabel: = widgets.NewQLabel2("支給合計", nil, 0)
+		gridLayout.AddWidget(paymenttotalLabel, 4, 4, 0)
+
+	paymenttotalInput := widgets.NewQLineEdit(nil)
+		gridLayout.AddWidget(	paymenttotalInput, 5, 4, 0)
+
+	gridLayout.AddWidget(ikoruLabel, 3, 3, 0)
 	jikanInput.ConnectEditingFinished(calcAndInsert) //jikyuuからフォーカスをはずした後、編集を終了したらcalcAndInsert関数を実行する
 	jikyuuInput.ConnectEditingFinished(calcAndInsert)
+	dayInput.ConnectEditingFinished(calcAndInsert)
+	trafficInput.ConnectEditingFinished(calcAndInsert)
+	goukeiInput.ConnectEditingFinished(func sum)
+	traffictotalInput.ConnectEditingFinished(func sum)
 
 	widget.SetLayout(gridLayout)
 	window.SetCentralWidget(widget)
@@ -69,4 +108,16 @@ func calcAndInsert() {
 	h := strconv.Itoa(res) //数字を文字に変換する
 	goukeiInput.Clear()    //goukeiのQlineEditに入力されている文字を消す
 	goukeiInput.Insert(h)  //goukeiに掛け算結果のhを入力する
+}
+
+func sum (){
+	str:=goukeiInput.Text()
+	i,_:=strconv.Atoi(str)
+
+	str1 := traffictotalInput.Text()
+	j, _ := strconv.Atoi(str1)
+		res := i + j
+		h := strconv.Itoa(res)
+		paymenttotalInput.Clear()
+		paymenttotalInput.Insert(h)
 }
