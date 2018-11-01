@@ -28,6 +28,7 @@ var kouorotuBox *widgets.QComboBox
 var beforeincomeInput *widgets.QLineEdit
 var followBox *widgets.QComboBox
 var municipaltaxInput *widgets.QLineEdit
+var lastInput *widgets.QLineEdit
 
 func main() {
 
@@ -140,6 +141,12 @@ func main() {
 	pensionInput = widgets.NewQLineEdit(nil)
 	gridLayout.AddWidget(pensionInput, 7, 4, 0)
 
+	lastLabel := widgets.NewQLabel2("前月給与", nil, 0)
+	gridLayout.AddWidget(lastLabel, 6, 5, 0)
+
+	lastInput = widgets.NewQLineEdit(nil)
+	gridLayout.AddWidget(lastInput, 7, 5, 0)
+
 	employmentinshulanceLabel := widgets.NewQLabel2("雇用保険", nil, 0)
 	gridLayout.AddWidget(employmentinshulanceLabel, 8, 0, 0)
 
@@ -184,6 +191,7 @@ func main() {
 	healthinsuranceInput.ConnectEditingFinished(calcAndInsert)
 	pensionInput.ConnectEditingFinished(calcAndInsert)
 	deductionInput.ConnectEditingFinished(calcAndInsert)
+	lastInput.ConnectEditingFinished(calcAndInsert)
 
 	//box系のイベント
 	followBox.ConnectCurrentIndexChanged2(func(text string) {
@@ -246,12 +254,17 @@ func calcAndInsert() {
 	kouorotuIndex := kouorotuBox.CurrentIndex()
 
 	//従たる給与についての扶養控除申告書の提出
+
 	followIndex := followBox.CurrentIndex()
 
 	//所得税の計算
+	//賞与がある場合
 	incometaxAmount := tax.CalcTax(incomeAmout, kouorotuIndex, supportnumber, followIndex)
+	lastAmount := convert(lastInput)
+	if lastAmount > 0 && bonusAmount > 0 {
+		incometaxAmount += tax.CalcBonusTax(lastAmount, kouorotuIndex, supportnumber, followIndex)
+	}
 	insert(incometaxInput, incometaxAmount)
-
 }
 
 func convert(e *widgets.QLineEdit) int {
